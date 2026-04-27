@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #0f172a;
+      --mid:    #334155;
+      --muted:  #64748b;
+      --border: #e2e8f0;
+      --bg:     #f8fafc;
+      --white:  #ffffff;
+      --accent: #2563eb;
+      --max-w:  1040px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 48px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: -0.3px;
+    }
+
+    header p {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 40px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 720px) {
+      header { padding: 24px 20px; }
+      main   { padding: 24px 20px 60px; grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-header h2 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent);
+    }
+
+    .panel-header p {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .group {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .group:last-child {
+      border-bottom: none;
+    }
+
+    .group-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    li {
+      font-size: 13px;
+      color: var(--mid);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2px 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Services &amp; Offerings</h1>
+    <p>A combined view of capabilities across talent, HR, and technology.</p>
+  </header>
+
+  <main>
+
+    <!-- ── PANEL 1: HR & TALENT ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Talent &amp; Human Capital</h2>
+        <p>Recruitment, HR consulting, L&amp;D, compliance, and career services</p>
+      </div>
+
+      <div class="group">
+        <div class="group-title">Recruitment &amp; Search</div>
+        <ul>
+          <li>Executive search</li>
+          <li>Permanent staffing</li>
+          <li>Recruitment process outsourcing (RPO)</li>
+          <li>Recruitment on demand</li>
+          <li>Campus recruitment</li>
+          <li>Internship &amp; trainee program management</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-title">HR Consulting</div>
+        <ul>
+          <li>HR strategy &amp; transformation</li>
+          <li>Compensation &amp; benefits consulting</li>
+          <li>Organisational development &amp; change management</li>
+          <li>Diversity, equity &amp; inclusion (DEI)</li>
+          <li>Talent management &amp; development</li>
+          <li>HR setup for startups</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-title">Learning &amp; Development</div>
+        <ul>
+          <li>Learning strategy &amp; needs assessment</li>
+          <li>Training program design &amp; delivery</li>
+          <li>Digital learning &amp; technology integration</li>
+          <li>Performance &amp; engagement-focused programs</li>
+          <li>Analytics, reporting &amp; knowledge management</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-title">Career Services</div>
+        <ul>
+          <li>Career counselling</li>
+          <li>Job placement assistance</li>
+          <li>Resume building &amp; interview preparation</li>
+          <li>Internship facilitation</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-title">Compliance &amp; HR Technology</div>
+        <ul>
+          <li>Statutory compliance &amp; legal counsel</li>
+          <li>HR technology assessment &amp; advisory</li>
+          <li>Tool selection &amp; vendor recommendations</li>
+          <li>Implementation strategy planning</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── PANEL 2: AI & TECH ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <h2>AI &amp; Technology</h2>
+        <p>Products built, tools shipped, and strategy delivered</p>
+      </div>
+
+      <div class="group">
+        <div class="group-title">AI Products &amp; Platforms</div>
+        <ul>
+          <li>AI recruitment platform with multi-agent sourcing, screening &amp; scoring</li>
+          <li>Real-time call transcription &amp; browser-based calling tool</li>
+          <li>AI interview bot with structured assessment reports</li>
+          <li>AI agents for bulk outbound voice calling</li>
+          <li>AI detection engine for documents &amp; content authenticity</li>
+          <li>AI-assisted family health management app</li>
+          <li>Face recognition attendance system (150 classrooms, 7,000 students)</li>
+          <li>Enterprise predictive maintenance platform</li>
+          <li>AI agent for automated RFP &amp; bid response</li>
+          <li>AI agents for training &amp; personalised learning delivery</li>
+          <li>Research agents (multi-source synthesis &amp; reporting)</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-title">AI Tools &amp; Automation</div>
+        <div class="tag-row">
+          <span class="tag">Resume parser &amp; JD matcher</span>
+          <span class="tag">AI email responder</span>
+          <span class="tag">Bulk outreach with research agent</span>
+          <span class="tag">Interview question bank generator</span>
+          <span class="tag">Candidate shortlisting &amp; ranking</span>
+          <span class="tag">Offer letter generator</span>
+          <span class="tag">Onboarding kit generator</span>
+          <span class="tag">ATS resume optimizer</span>
+          <span class="tag">Skill gap analyzer</span>
+          <span class="tag">Mock interview simulator</span>
+          <span class="tag">Lesson plan generator</span>
+          <span class="tag">AI content detector for submissions</span>
+          <span class="tag">Job description generator</span>
+          <span class="tag">HR policy Q&amp;A bot</span>
+          <span class="tag">Performance review summarizer</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-title">Strategy &amp; Delivery</div>
+        <ul>
+          <li>Go-to-market strategy for AI-first B2B &amp; consumer products</li>
+          <li>Investor pitch decks &amp; fundraising narrative</li>
+          <li>Product specification &amp; scoping</li>
+          <li>Financial models &amp; enterprise proposals</li>
+          <li>End-to-end project delivery across HR Tech, EdTech &amp; Enterprise</li>
+          <li>Client-facing documentation &amp; operational handover kits</li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <div class="group-title">Tech Stack</div>
+        <div class="tag-row">
+          <span class="tag">LLMs / GenAI</span>
+          <span class="tag">Multi-agent systems</span>
+          <span class="tag">Voice AI (Twilio + Deepgram)</span>
+          <span class="tag">Computer vision</span>
+          <span class="tag">RAG</span>
+          <span class="tag">React</span>
+          <span class="tag">Node.js / Python</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">AWS / Vercel</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
