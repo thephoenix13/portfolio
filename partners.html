@@ -6,20 +6,30 @@
   <title>Services</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dark:   #0f172a;
-      --mid:    #334155;
-      --muted:  #64748b;
-      --border: #e2e8f0;
-      --bg:     #f8fafc;
-      --white:  #ffffff;
-      --accent: #2563eb;
-      --max-w:  1040px;
+      --dark:     #0f172a;
+      --mid:      #334155;
+      --muted:    #64748b;
+      --border:   #e2e8f0;
+      --bg:       #f1f5f9;
+      --white:    #ffffff;
+
+      --hr-color: #0d9488;   /* teal */
+      --hr-light: #f0fdfa;
+      --hr-mid:   #ccfbf1;
+
+      --ai-color: #6366f1;   /* indigo */
+      --ai-light: #eef2ff;
+      --ai-mid:   #e0e7ff;
+
+      --max-w: 1060px;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
@@ -30,139 +40,192 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    header {
+    /* ── HEADER ── */
+    .site-header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
-      padding: 32px 48px;
+    }
+
+    .site-header-inner {
       max-width: var(--max-w);
       margin: 0 auto;
+      padding: 28px 48px;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    header h1 {
-      font-size: 20px;
-      font-weight: 600;
+    .site-header h1 {
+      font-size: 18px;
+      font-weight: 700;
       color: var(--dark);
-      letter-spacing: -0.3px;
+      letter-spacing: -0.4px;
     }
 
-    header p {
-      margin-top: 4px;
-      color: var(--muted);
+    .site-header p {
       font-size: 13px;
+      color: var(--muted);
     }
 
+    /* ── MAIN GRID ── */
     main {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 40px 48px 80px;
+      padding: 36px 48px 80px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 28px;
       align-items: start;
     }
 
-    @media (max-width: 720px) {
-      header { padding: 24px 20px; }
-      main   { padding: 24px 20px 60px; grid-template-columns: 1fr; gap: 24px; }
+    @media (max-width: 760px) {
+      .site-header-inner { padding: 20px; }
+      main { padding: 20px 16px 60px; grid-template-columns: 1fr; gap: 20px; }
     }
 
+    /* ── PANEL ── */
     .panel {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
 
+    .panel-bar {
+      height: 4px;
+    }
+
+    .panel--hr .panel-bar  { background: var(--hr-color); }
+    .panel--ai .panel-bar  { background: var(--ai-color); }
+
     .panel-header {
-      padding: 20px 24px 16px;
+      padding: 20px 24px 18px;
       border-bottom: 1px solid var(--border);
     }
 
+    .panel--hr .panel-header { background: var(--hr-light); }
+    .panel--ai .panel-header { background: var(--ai-light); }
+
     .panel-header h2 {
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--accent);
+      letter-spacing: 0.9px;
     }
 
+    .panel--hr .panel-header h2 { color: var(--hr-color); }
+    .panel--ai .panel-header h2 { color: var(--ai-color); }
+
     .panel-header p {
-      margin-top: 4px;
+      margin-top: 3px;
       font-size: 12px;
       color: var(--muted);
     }
 
+    /* ── GROUP ── */
     .group {
       padding: 16px 24px;
       border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
     }
 
-    .group:last-child {
-      border-bottom: none;
-    }
+    .group:last-child { border-bottom: none; }
 
     .group-title {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.7px;
+      letter-spacing: 0.8px;
       color: var(--muted);
       margin-bottom: 10px;
+      padding-left: 10px;
+      border-left: 2px solid var(--border);
     }
 
-    ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .panel--hr .group-title { border-left-color: var(--hr-color); color: var(--hr-color); }
+    .panel--ai .group-title { border-left-color: var(--ai-color); color: var(--ai-color); }
+
+    /* ── LIST ── */
+    ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
 
     li {
       font-size: 13px;
       color: var(--mid);
       display: flex;
       align-items: baseline;
-      gap: 8px;
+      gap: 9px;
+      padding: 3px 6px;
+      border-radius: 6px;
+      transition: background 0.12s;
+      cursor: default;
     }
+
+    li:hover { background: var(--bg); }
 
     li::before {
       content: '';
-      width: 4px;
-      height: 4px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: var(--border);
       flex-shrink: 0;
-      margin-top: 7px;
+      margin-top: 6px;
     }
 
+    .panel--hr li::before { background: var(--hr-mid); }
+    .panel--ai li::before { background: var(--ai-mid); }
+
+    /* ── TAGS ── */
     .tag-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
     }
 
     .tag {
-      font-size: 11px;
-      color: var(--muted);
-      background: var(--bg);
-      border: 1px solid var(--border);
+      font-size: 11.5px;
       border-radius: 20px;
-      padding: 2px 10px;
+      padding: 3px 11px;
+      transition: background 0.12s, color 0.12s;
+      cursor: default;
+    }
+
+    .panel--hr .tag {
+      color: var(--hr-color);
+      background: var(--hr-light);
+      border: 1px solid var(--hr-mid);
+    }
+
+    .panel--hr .tag:hover {
+      background: var(--hr-mid);
+    }
+
+    .panel--ai .tag {
+      color: var(--ai-color);
+      background: var(--ai-light);
+      border: 1px solid var(--ai-mid);
+    }
+
+    .panel--ai .tag:hover {
+      background: var(--ai-mid);
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Services &amp; Offerings</h1>
-    <p>A combined view of capabilities across talent, HR, and technology.</p>
-  </header>
+  <div class="site-header">
+    <div class="site-header-inner">
+      <h1>Services &amp; Offerings</h1>
+      <p>A combined view of capabilities across talent, HR, and technology.</p>
+    </div>
+  </div>
 
   <main>
 
-    <!-- ── PANEL 1: HR & TALENT ── -->
-    <div class="panel">
+    <!-- ── HR & TALENT ── -->
+    <div class="panel panel--hr">
+      <div class="panel-bar"></div>
       <div class="panel-header">
         <h2>Talent &amp; Human Capital</h2>
         <p>Recruitment, HR consulting, L&amp;D, compliance, and career services</p>
@@ -224,8 +287,9 @@
       </div>
     </div>
 
-    <!-- ── PANEL 2: AI & TECH ── -->
-    <div class="panel">
+    <!-- ── AI & TECH ── -->
+    <div class="panel panel--ai">
+      <div class="panel-bar"></div>
       <div class="panel-header">
         <h2>AI &amp; Technology</h2>
         <p>Products built, tools shipped, and strategy delivered</p>
