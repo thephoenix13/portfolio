@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pratik Gade — Zero to One Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #2563eb;
+      --blue-light:  #eff6ff;
+      --blue-mid:    #dbeafe;
+      --dark:        #0f172a;
+      --mid:         #334155;
+      --muted:       #64748b;
+      --border:      #e2e8f0;
+      --bg:          #f8fafc;
+      --white:       #ffffff;
+      --radius:      12px;
+      --radius-sm:   8px;
+      --max-w:       1100px;
+
+      --text-xs:   11px;
+      --text-sm:   12px;
+      --text-base: 14px;
+      --text-md:   15px;
+      --text-lg:   18px;
+      --text-xl:   22px;
+      --text-hero: clamp(34px, 5vw, 50px);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      font-size: var(--text-base);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-size: var(--text-md);
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(150deg, #0a1628 0%, #0f172a 50%, #1a2d6e 100%);
+      color: white;
+      padding: 88px 48px 80px;
+      text-align: center;
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #7dd3fc;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 99px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: var(--text-hero);
+      font-weight: 700;
+      letter-spacing: -1.2px;
+      line-height: 1.08;
+      margin-bottom: 16px;
+      color: #f1f5f9;
+    }
+    .hero-sub {
+      font-size: var(--text-md);
+      color: #64748b;
+      max-width: 500px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .hero-contacts {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-contacts a {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #94a3b8;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      padding: 8px 20px;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .hero-contacts a:hover {
+      background: rgba(255,255,255,0.14);
+      color: #e2e8f0;
+    }
+
+    /* ─────────────────────────────────────────
+       SHARED SECTION STRUCTURE
+    ───────────────────────────────────────── */
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 72px 48px;
+    }
+    .sec-label {
+      display: block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+    .sec-sub {
+      font-size: var(--text-base);
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 40px;
+      line-height: 1.65;
+    }
+    .sec-header-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .count-badge {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 3px 10px;
+      border-radius: 99px;
+    }
+
+    /* ─────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────── */
+    #about { background: var(--bg); border-top: 1px solid var(--border); }
+    .about-layout {
+      display: block;
+    }
+    .about-text p {
+      font-size: var(--text-md);
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--dark); font-weight: 600; }
+
+    /* ─────────────────────────────────────────
+       PROJECTS
+    ───────────────────────────────────────── */
+    #projects { background: var(--white); border-top: 1px solid var(--border); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.18s;
+    }
+    .card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .card-meta {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 99px;
+    }
+    .tag-domain   { background: var(--blue-light); color: var(--blue); }
+    .tag-industry { background: #f0fdf4; color: #16a34a; }
+    .card h3 {
+      font-size: var(--text-md);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: var(--text-base);
+      color: var(--mid);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+    .card-tech { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tech-pill {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    /* ─────────────────────────────────────────
+       OPERATIONS & STRATEGY
+    ───────────────────────────────────────── */
+    #operations { background: var(--bg); border-top: 1px solid var(--border); }
+    .ops-grid { display: flex; flex-direction: column; gap: 16px; }
+    .ops-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+    }
+    .ops-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ops-num {
+      width: 32px;
+      height: 32px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .ops-card-header h3 {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.2px;
+    }
+    .ops-card ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 10px 40px;
+    }
+    .ops-card ul li {
+      font-size: var(--text-base);
+      color: var(--mid);
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+    }
+    .ops-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 5px;
+      height: 5px;
+      background: var(--blue);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    /* ─────────────────────────────────────────
+       MINI TOOLS
+    ───────────────────────────────────────── */
+    #tools { background: var(--white); border-top: 1px solid var(--border); }
+    .tools-category { margin-bottom: 44px; }
+    .tools-category:last-child { margin-bottom: 0; }
+    .category-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--blue-mid);
+      display: block;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 10px;
+    }
+    .tool-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 13px 15px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .tool-item:hover {
+      border-color: #93c5fd;
+      background: var(--blue-light);
+    }
+    .tool-item strong {
+      display: block;
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 3px;
+    }
+    .tool-item span {
+      font-size: var(--text-sm);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────
+       MEHRAAS SPACE
+    ───────────────────────────────────────── */
+    #mehraas { background: var(--bg); border-top: 1px solid var(--border); }
+    .wellness-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
+    }
+    .wellness-card {
+      background: var(--white);
+      border: 1px solid #e9d5ff;
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .wellness-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124,58,237,0.08);
+    }
+    .wellness-icon {
+      font-size: 22px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .wellness-card strong {
+      display: block;
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: #5b21b6;
+      margin-bottom: 4px;
+    }
+    .wellness-card span {
+      font-size: var(--text-sm);
+      color: #7c3aed;
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────
+       TECH STACK
+    ───────────────────────────────────────── */
+    #tech { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+    #tech .sec-label { color: #60a5fa; }
+    #tech .sec-title { color: #f1f5f9; }
+    .tech-rows { display: flex; flex-direction: column; gap: 0; }
+    .tech-row {
+      display: flex;
+      align-items: baseline;
+      gap: 32px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .tech-row:last-child { border-bottom: none; }
+    .tech-row-label {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: #60a5fa;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      width: 180px;
+      flex-shrink: 0;
+    }
+    .tech-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tech-tag {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #cbd5e1;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: #020617;
+      color: #334155;
+      text-align: center;
+      padding: 28px 48px;
+      font-size: var(--text-sm);
+    }
+    footer a { color: #3b82f6; text-decoration: none; }
+    footer a:hover { color: #60a5fa; }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 56px 24px 52px; }
+      .wrap { padding: 48px 20px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .ops-card { padding: 20px; }
+      .ops-card ul { grid-template-columns: 1fr; }
+      .tech-row { flex-direction: column; gap: 10px; }
+      .tech-row-label { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">Pratik Gade</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#operations">Operations</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#mehraas">Wellness</a></li>
+    <li><a href="#tech">Tech</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">AI &amp; IT Development · Consulting</div>
+  <h1>Pratik Gade</h1>
+  <p class="hero-sub">Building AI products, automation systems, and intelligent tools across HR Tech, EdTech, Health Tech, and Enterprise.</p>
+  <div class="hero-contacts">
+    <a href="tel:+919307042201">+91 93070 42201</a>
+    <a href="https://linkedin.com/in/pratikgade13" target="_blank">LinkedIn</a>
+    <a href="mailto:pratikgade@perfectskills.in">pratikgade@perfectskills.in</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <span class="sec-label">About</span>
+    <div class="sec-header-row">
+      <h2 class="sec-title">Who I Am</h2>
+    </div>
+    <p class="sec-sub">Six years at the intersection of AI, HR Tech, and EdTech.</p>
+    <div class="about-layout">
+      <div class="about-text">
+        <p>I'm Pratik — I build things with AI, and I help companies figure out what to build next. Over the last six years, I've spent most of my time at the intersection of HR Tech and EdTech, two spaces that look very different on the surface but share the same core challenge: getting the right information to the right person at the right time.</p>
+        <p>I run <strong>Perfect Skills</strong>, where the work ranges from shipping full AI products to helping founders turn a rough idea into a fundable pitch. Some weeks that means writing multi-agent systems, Other weeks it means sitting across from a client and building the business case for why their organisation needs to change. I've learned to be comfortable with both.</p>
+        <p>I've worked with solo founders, growing startups, universities, enterprise teams, and NGOs — projects as focused as a single automation script and as broad as a national-scale platform. What stays consistent is the approach: understand the problem properly, build something that actually works, and make sure the people using it can keep it running without me.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <span class="sec-label">Work</span>
+    <div class="sec-header-row">
+      <h2 class="sec-title">Projects</h2>
+      <span class="count-badge">18</span>
+    </div>
+    <p class="sec-sub">Full builds, platform deployments, AI systems, and consulting engagements across industries.</p>
+    <div class="projects-grid">
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Voice AI</span><span class="tag tag-industry">HR Tech</span></div>
+        <h3>Real-time Call Transcription Platform</h3>
+        <p>Browser-based voice and call web app with real-time transcription. Captures and scribes conversations during live calls using AI speech processing.</p>
+        <div class="card-tech"><span class="tech-pill">Twilio</span><span class="tech-pill">Deepgram</span><span class="tech-pill">Supabase</span><span class="tech-pill">WebSocket</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">AI Agents</span><span class="tag tag-industry">HR Tech</span></div>
+        <h3>AI Recruitment Platform with Proprietary Recruitment Model</h3>
+        <p>Multi-agent system with a proprietary Large Recruitment Model (LRM™) that automates sourcing, screening, and candidate feedback synthesis.</p>
+        <div class="card-tech"><span class="tech-pill">LLM / GenAI</span><span class="tech-pill">Multi-agent</span><span class="tech-pill">React</span><span class="tech-pill">Patent Filed</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">AI Health</span><span class="tag tag-industry">Health Tech</span></div>
+        <h3>AI-Assisted Family Health Management App</h3>
+        <p>Family health management web app offering AI-assisted tracking and guidance, with a full GTM strategy and 28-post social media launch plan.</p>
+        <div class="card-tech"><span class="tech-pill">AI Health Models</span><span class="tech-pill">Web App</span><span class="tech-pill">GTM Strategy</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Voice AI</span><span class="tag tag-industry">HR Tech</span></div>
+        <h3>Browser-Based Recruiter Calling Tool</h3>
+        <p>Browser-based calling tool for recruiters with live transcription. Resolved multiple Windows-specific environment and deployment issues.</p>
+        <div class="card-tech"><span class="tech-pill">Node.js</span><span class="tech-pill">React</span><span class="tech-pill">Twilio</span><span class="tech-pill">Deepgram</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Computer Vision</span><span class="tag tag-industry">EdTech</span></div>
+        <h3>Face Recognition Attendance System</h3>
+        <p>Deployed AI-based attendance system across 150 classrooms for 7,000 students. Includes accuracy report analysis and full implementation plan.</p>
+        <div class="card-tech"><span class="tech-pill">Face Recognition</span><span class="tech-pill">Computer Vision</span><span class="tech-pill">AWS</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Surveillance AI</span><span class="tag tag-industry">EdTech</span></div>
+        <h3>CCTV-Integrated AI Attendance System</h3>
+        <p>University-facing proposal and financial model for a CCTV-integrated attendance system using AI face recognition on AWS.</p>
+        <div class="card-tech"><span class="tech-pill">Face Recognition</span><span class="tech-pill">AWS</span><span class="tech-pill">Financial Model</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Product Management</span><span class="tag tag-industry">HR Tech</span></div>
+        <h3>Recruitment Management System — Product Spec</h3>
+        <p>Full product specification for a recruitment management system, scoped and documented for development on a no-code platform.</p>
+        <div class="card-tech"><span class="tech-pill">Product Spec</span><span class="tech-pill">Lovable (no-code)</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Operations</span><span class="tag tag-industry">NGO</span></div>
+        <h3>Animal Welfare Management Platform</h3>
+        <p>Client-facing documentation covering platform capabilities, workflows, and operational management features for an animal welfare organisation.</p>
+        <div class="card-tech"><span class="tech-pill">Web App</span><span class="tech-pill">Client Docs</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Predictive Maintenance</span><span class="tag tag-industry">Enterprise</span></div>
+        <h3>Enterprise Predictive Maintenance Platform</h3>
+        <p>Enterprise maintenance management platform with AI-driven insights. Produced full client-facing documentation for the system.</p>
+        <div class="card-tech"><span class="tech-pill">AI Insights</span><span class="tech-pill">Enterprise Platform</span><span class="tech-pill">Client Docs</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">AI Agents</span><span class="tag tag-industry">Legal Tech</span></div>
+        <h3>AI Agent for Automated RFP &amp; Bid Response</h3>
+        <p>Automates RFP drafting for corporate and government bid processes using AI agents. Built for a corporate legal professional.</p>
+        <div class="card-tech"><span class="tech-pill">AI Agents</span><span class="tech-pill">LLM / GenAI</span><span class="tech-pill">Legal Workflows</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Recruitment AI</span><span class="tag tag-industry">HR Tech</span></div>
+        <h3>Resume Parser &amp; JD Matching Engine</h3>
+        <p>Parses resumes and matches them against job descriptions. Automates candidate-to-role fit scoring to reduce manual screening time.</p>
+        <div class="card-tech"><span class="tech-pill">LLM / GenAI</span><span class="tech-pill">NLP</span><span class="tech-pill">Python</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">AI Safety</span><span class="tag tag-industry">EdTech / HR Tech</span></div>
+        <h3>AI Detection Engine for Documents &amp; Content</h3>
+        <p>Identifies AI-generated content in papers, resumes, and general content. Built for academic integrity and content authenticity use cases.</p>
+        <div class="card-tech"><span class="tech-pill">Classification Models</span><span class="tech-pill">NLP</span><span class="tech-pill">Python</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Voice AI</span><span class="tag tag-industry">HR Tech / Sales</span></div>
+        <h3>AI Agents for Bulk Voice Calling</h3>
+        <p>AI agent system for autonomous outbound bulk voice calls. Designed for recruitment outreach, lead qualification, and large-scale communication.</p>
+        <div class="card-tech"><span class="tech-pill">AI Agents</span><span class="tech-pill">Twilio Voice</span><span class="tech-pill">Python</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Conversational AI</span><span class="tag tag-industry">HR Tech</span></div>
+        <h3>AI Interview Bot</h3>
+        <p>Conversational AI bot that conducts structured interviews autonomously, evaluates responses in real-time, and generates assessment reports.</p>
+        <div class="card-tech"><span class="tech-pill">LLM / GenAI</span><span class="tech-pill">Speech-to-Text</span><span class="tech-pill">Python</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">AI Agents</span><span class="tag tag-industry">EdTech / Enterprise</span></div>
+        <h3>AI Agents for Training &amp; Learning Delivery</h3>
+        <p>Delivers personalised training content and assessments. Adapts learning paths dynamically based on user responses and progress.</p>
+        <div class="card-tech"><span class="tech-pill">AI Agents</span><span class="tech-pill">LLM / GenAI</span><span class="tech-pill">Python</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Research AI</span><span class="tag tag-industry">Cross-sector</span></div>
+        <h3>Research Agents</h3>
+        <p>AI agents for deep research across domains. Sources, synthesises, and summarises information from multiple channels on demand.</p>
+        <div class="card-tech"><span class="tech-pill">AI Agents</span><span class="tech-pill">RAG</span><span class="tech-pill">Web Search</span><span class="tech-pill">Python</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Communication AI</span><span class="tag tag-industry">Cross-sector</span></div>
+        <h3>AI Email Responder</h3>
+        <p>Reads incoming emails and drafts contextually accurate, tone-matched responses autonomously. Reduces manual email handling time significantly.</p>
+        <div class="card-tech"><span class="tech-pill">LLM / GenAI</span><span class="tech-pill">Email APIs</span><span class="tech-pill">Python</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta"><span class="tag tag-domain">Outreach AI</span><span class="tag tag-industry">Cross-sector</span></div>
+        <h3>Bulk Email Script with Research Agent</h3>
+        <p>Research agent enriches target contacts, then a bulk email script sends personalised outreach at scale with delivery outcomes logged.</p>
+        <div class="card-tech"><span class="tech-pill">AI Agents</span><span class="tech-pill">RAG</span><span class="tech-pill">Email APIs</span><span class="tech-pill">Python</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS & STRATEGY -->
+<section id="operations">
+  <div class="wrap">
+    <span class="sec-label">Strategy</span>
+    <h2 class="sec-title">Operations &amp; Strategy</h2>
+    <p class="sec-sub">How projects get delivered, launched, and funded.</p>
+    <div class="ops-grid">
+
+      <div class="ops-card">
+        <div class="ops-card-header">
+          <div class="ops-num">01</div>
+          <h3>Operations</h3>
+        </div>
+        <ul>
+          <li>Managed end-to-end delivery across 18+ concurrent projects spanning HR Tech, EdTech, Health Tech, Legal Tech, and Enterprise</li>
+          <li>Led large-scale deployments — including a 150-classroom, 7,000-student AI attendance rollout — coordinating vendors, client teams, and technical implementation</li>
+          <li>Worked across team sizes from solo founders and 2-person startups to institutional and enterprise clients</li>
+          <li>Built product specifications, implementation plans, client-facing documentation, and operational handover kits end-to-end</li>
+          <li>Managed multi-stakeholder projects involving legal professionals, university administrators, NGOs, and corporate HR teams</li>
+          <li>Ran cross-functional coordination across design, development, and business delivery — often as the single point of accountability</li>
+        </ul>
+      </div>
+
+      <div class="ops-card">
+        <div class="ops-card-header">
+          <div class="ops-num">02</div>
+          <h3>Go-to-Market</h3>
+        </div>
+        <ul>
+          <li>Designed full GTM strategies for AI-first consumer and B2B products, including positioning, channel selection, and launch sequencing</li>
+          <li>Built 28-post and 30-day social media launch calendars with platform-specific content strategy</li>
+          <li>Created tiered vendor proposals and pricing models for national-scale government platform deployments</li>
+          <li>Developed WhatsApp teasers, pitch narratives, and short-form launch assets for pre-seed and early-stage outreach</li>
+          <li>Positioned and launched AI products across HR Tech, Health Tech, and EdTech verticals — from brand narrative to first acquisition</li>
+          <li>Managed product messaging for a patented AI recruitment platform (LRM™) from concept through IP filing</li>
+        </ul>
+      </div>
+
+      <div class="ops-card">
+        <div class="ops-card-header">
+          <div class="ops-num">03</div>
+          <h3>Fundraising &amp; Strategy</h3>
+        </div>
+        <ul>
+          <li>Prepared investor pitch decks and narrative documents for early-stage startups seeking pre-seed and seed funding</li>
+          <li>Built financial models for institutional and enterprise proposals, including multi-tier pricing and ROI projections</li>
+          <li>Supported patent filing strategy for a proprietary AI recruitment model (LRM™) under the Zeople venture</li>
+          <li>Advised founders on investor storytelling, business model structuring, and competitive positioning</li>
+          <li>Created proposal packages for government and university-scale projects, including scope, cost breakdown, and delivery timelines</li>
+          <li>Structured consulting engagements across legal, corporate, and institutional clients — from brief to delivery and billing</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MINI TOOLS -->
+<section id="tools">
+  <div class="wrap">
+    <span class="sec-label">Utilities</span>
+    <div class="sec-header-row">
+      <h2 class="sec-title">Mini Tools</h2>
+      <span class="count-badge">40+</span>
+    </div>
+    <p class="sec-sub">Lightweight AI tools built for specific workflows across HR, EdTech, and learning.</p>
+
+    <div class="tools-category">
+      <span class="category-label">For Companies — HRs, Admins &amp; Recruiters</span>
+      <div class="tools-grid">
+        <div class="tool-item"><strong>Resume Parser &amp; JD Matching Engine</strong><span>Parses resumes and scores fit against a job description automatically</span></div>
+        <div class="tool-item"><strong>Job Description Generator</strong><span>Generates structured, bias-checked JDs from a role brief</span></div>
+        <div class="tool-item"><strong>Interview Question Bank Generator</strong><span>Produces role-specific interview questions by seniority and function</span></div>
+        <div class="tool-item"><strong>AI Interview Bot</strong><span>Conducts structured interviews autonomously and generates assessment reports</span></div>
+        <div class="tool-item"><strong>Candidate Shortlisting &amp; Ranking Tool</strong><span>Scores and ranks applicants from a bulk upload against defined criteria</span></div>
+        <div class="tool-item"><strong>Offer Letter Generator</strong><span>Drafts personalised offer letters from a template and candidate data</span></div>
+        <div class="tool-item"><strong>Onboarding Kit Generator</strong><span>Creates a tailored onboarding checklist and welcome pack per role</span></div>
+        <div class="tool-item"><strong>AI Agents for Bulk Voice Calling</strong><span>Handles outbound bulk calls for recruitment outreach or screening</span></div>
+        <div class="tool-item"><strong>Bulk Email Script with Research Agent</strong><span>Researches and enriches contacts, then sends personalised outreach at scale</span></div>
+        <div class="tool-item"><strong>AI Email Responder</strong><span>Reads and drafts contextually accurate replies to incoming emails</span></div>
+        <div class="tool-item"><strong>Recruitment Outreach Message Generator</strong><span>Writes personalised LinkedIn/WhatsApp outreach messages for sourcers</span></div>
+        <div class="tool-item"><strong>HR Policy Q&amp;A Bot</strong><span>Answers employee queries about leave, policies, and processes instantly</span></div>
+        <div class="tool-item"><strong>Exit Interview Summarizer</strong><span>Synthesises exit interview responses into key themes and actionable insights</span></div>
+        <div class="tool-item"><strong>Performance Review Summarizer</strong><span>Condenses manager and peer feedback into structured review summaries</span></div>
+        <div class="tool-item"><strong>AI Detection Engine for Documents</strong><span>Flags AI-generated content in resumes, papers, and submissions</span></div>
+        <div class="tool-item"><strong>Background Verification Checklist Generator</strong><span>Produces a tailored BGV checklist based on role and geography</span></div>
+      </div>
+    </div>
+
+    <div class="tools-category">
+      <span class="category-label">For Candidates — Learners &amp; Job Seekers</span>
+      <div class="tools-grid">
+        <div class="tool-item"><strong>ATS Resume Optimizer</strong><span>Reviews and rewrites resume sections to pass ATS filters for a target JD</span></div>
+        <div class="tool-item"><strong>Cover Letter Generator</strong><span>Writes tailored cover letters matched to a specific job and company</span></div>
+        <div class="tool-item"><strong>Skill Gap Analyzer</strong><span>Compares a candidate's profile to a target role and highlights missing skills</span></div>
+        <div class="tool-item"><strong>Career Path Advisor</strong><span>Suggests logical next roles and progression paths based on current profile</span></div>
+        <div class="tool-item"><strong>Mock Interview Simulator</strong><span>Runs a live mock interview with AI feedback on answers and delivery</span></div>
+        <div class="tool-item"><strong>Interview Preparation Bot</strong><span>Generates likely questions and model answers for a given role and company</span></div>
+        <div class="tool-item"><strong>Salary Negotiation Coach</strong><span>Advises on negotiation tactics and scripts based on role and market data</span></div>
+        <div class="tool-item"><strong>LinkedIn Profile Reviewer</strong><span>Audits and rewrites LinkedIn sections for visibility and recruiter appeal</span></div>
+        <div class="tool-item"><strong>Personal Branding Statement Generator</strong><span>Crafts a concise professional summary / elevator pitch</span></div>
+        <div class="tool-item"><strong>Job Description Decoder</strong><span>Translates corporate JD language into plain English and highlights red flags</span></div>
+        <div class="tool-item"><strong>Cold Outreach Message Generator</strong><span>Writes networking emails or DMs to potential referrers or hiring managers</span></div>
+        <div class="tool-item"><strong>Learning Path Generator</strong><span>Suggests a structured self-learning plan to upskill for a target role</span></div>
+      </div>
+    </div>
+
+    <div class="tools-category">
+      <span class="category-label">For Teachers</span>
+      <div class="tools-grid">
+        <div class="tool-item"><strong>Lesson Plan Generator</strong><span>Builds structured lesson plans from a topic, grade level, and duration</span></div>
+        <div class="tool-item"><strong>Quiz &amp; Assessment Generator</strong><span>Creates MCQ, short-answer, or case-based assessments from syllabus content</span></div>
+        <div class="tool-item"><strong>Exam Paper Generator</strong><span>Produces full exam papers with marking schemes from a curriculum brief</span></div>
+        <div class="tool-item"><strong>Assignment Rubric Generator</strong><span>Generates scoring rubrics for assignments aligned to learning outcomes</span></div>
+        <div class="tool-item"><strong>Student Assignment Feedback Generator</strong><span>Writes personalised, constructive feedback for student submissions at scale</span></div>
+        <div class="tool-item"><strong>AI Content Detector for Submissions</strong><span>Flags AI-generated or plagiarised content in student work</span></div>
+        <div class="tool-item"><strong>Doubt Resolution Bot</strong><span>Answers student questions on a topic in real-time using course material as context</span></div>
+        <div class="tool-item"><strong>Course Content Summarizer</strong><span>Condenses lecture notes, PDFs, or videos into structured study notes</span></div>
+        <div class="tool-item"><strong>Study Guide Generator</strong><span>Creates topic-wise revision guides and flashcards for learners</span></div>
+        <div class="tool-item"><strong>Parent Communication Generator</strong><span>Drafts progress update messages to parents in a clear, professional tone</span></div>
+        <div class="tool-item"><strong>Curriculum Mapping Tool</strong><span>Maps learning outcomes to topics and assessments across a course</span></div>
+        <div class="tool-item"><strong>AI Agents for Training &amp; Learning Delivery</strong><span>Delivers personalised training modules and adapts learning paths dynamically</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MEHRAAS SPACE -->
+<section id="mehraas">
+  <div class="wrap">
+    <span class="sec-label">Side Project</span>
+    <h2 class="sec-title">Wellness Space</h2>
+    <p class="sec-sub">A personal mental wellness toolkit — tools for emotional wellbeing, self-reflection, and calm. Built with care, no external audio dependencies.</p>
+    <div class="wellness-grid">
+      <div class="wellness-card"><span class="wellness-icon">🌬️</span><strong>Breathe</strong><span>Guided breathing exercises for anxiety relief</span></div>
+      <div class="wellness-card"><span class="wellness-icon">📓</span><strong>Journal</strong><span>Private journaling space for personal reflection</span></div>
+      <div class="wellness-card"><span class="wellness-icon">📊</span><strong>Mood Tracker</strong><span>Log and track emotional states over time</span></div>
+      <div class="wellness-card"><span class="wellness-icon">🫙</span><strong>Gratitude Jar</strong><span>Collect and revisit gratitude entries</span></div>
+      <div class="wellness-card"><span class="wellness-icon">🔀</span><strong>Worry Sorter</strong><span>Sort and process worries to reduce overwhelm</span></div>
+      <div class="wellness-card"><span class="wellness-icon">✉️</span><strong>Letters to Myself</strong><span>Write letters to your future or past self</span></div>
+      <div class="wellness-card"><span class="wellness-icon">✨</span><strong>Affirmations</strong><span>Positive affirmation cards for daily mindset</span></div>
+      <div class="wellness-card"><span class="wellness-icon">🎧</span><strong>Calm Corner</strong><span>Ambient sounds for calming — no external audio files</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="wrap">
+    <span class="sec-label">Stack</span>
+    <h2 class="sec-title">Tools &amp; Tech</h2>
+    <p class="sec-sub" style="color:#64748b;">Technologies and platforms used across projects.</p>
+    <div class="tech-rows">
+      <div class="tech-row">
+        <span class="tech-row-label">AI / ML</span>
+        <div class="tech-pills"><span class="tech-tag">Deepgram</span><span class="tech-tag">OpenAI</span><span class="tech-tag">Claude (LLMs)</span><span class="tech-tag">GenAI Agents</span><span class="tech-tag">Face Recognition</span><span class="tech-tag">Computer Vision</span><span class="tech-tag">NLP</span><span class="tech-tag">RAG</span></div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-row-label">Voice &amp; Comms</span>
+        <div class="tech-pills"><span class="tech-tag">Twilio Voice</span><span class="tech-tag">Twilio Browser SDK</span><span class="tech-tag">WebSocket</span><span class="tech-tag">ngrok</span></div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-row-label">Backend</span>
+        <div class="tech-pills"><span class="tech-tag">Node.js</span><span class="tech-tag">Express</span><span class="tech-tag">Python</span><span class="tech-tag">Supabase</span><span class="tech-tag">Supabase Edge Functions</span></div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-row-label">Frontend</span>
+        <div class="tech-pills"><span class="tech-tag">React</span><span class="tech-tag">PWA</span><span class="tech-tag">Web Apps</span></div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-row-label">Cloud &amp; Infra</span>
+        <div class="tech-pills"><span class="tech-tag">AWS</span><span class="tech-tag">Azure</span><span class="tech-tag">DigitalOcean</span><span class="tech-tag">Vercel</span><span class="tech-tag">Supabase CLI</span><span class="tech-tag">Claude Code</span></div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-row-label">No-code</span>
+        <div class="tech-pills"><span class="tech-tag">Lovable</span></div>
+      </div>
+      <div class="tech-row">
+        <span class="tech-row-label">Brands &amp; Ventures</span>
+        <div class="tech-pills"><span class="tech-tag">Perfect Skills</span><span class="tech-tag">Prakrit AI</span><span class="tech-tag">Zeople</span><span class="tech-tag">AutoMind AI</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Pratik Gade &nbsp;·&nbsp; Perfect Skills &nbsp;·&nbsp; <a href="mailto:pratikgade@perfectskills.in">pratikgade@perfectskills.in</a> &nbsp;·&nbsp; <a href="https://linkedin.com/in/pratikgade13" target="_blank">LinkedIn</a></p>
+</footer>
+
+</body>
+</html>
